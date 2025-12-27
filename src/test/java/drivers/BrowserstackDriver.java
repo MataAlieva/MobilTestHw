@@ -11,7 +11,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 
 public class BrowserstackDriver implements WebDriverProvider {
 
@@ -22,15 +21,16 @@ public class BrowserstackDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities caps = new MutableCapabilities();
 
-        HashMap<String, Object> bstackOptions = new HashMap<>();
-        bstackOptions.put("userName", config.browserstackUser());
-        bstackOptions.put("accessKey", config.browserstackKey());
+        caps.setCapability("device", config.deviceName());
+        caps.setCapability("os_version", config.osVersion());
+        caps.setCapability("app", config.appUrl());
 
-        caps.setCapability("bstack:options", bstackOptions);
-        caps.setCapability("platformName", "android");
-        caps.setCapability("appium:deviceName", config.deviceName());
-        caps.setCapability("appium:os_version", config.osVersion());
-        caps.setCapability("appium:app", config.appUrl());
+        caps.setCapability("browserstack.user", config.browserstackUser());
+        caps.setCapability("browserstack.key", config.browserstackKey());
+        caps.setCapability("project", "First Java Project");
+        caps.setCapability("build", "browserstack-build-1");
+        caps.setCapability("name", "first_test");
+
 
         try {
             return new RemoteWebDriver(new URL(config.browserstackUrl()), caps);
