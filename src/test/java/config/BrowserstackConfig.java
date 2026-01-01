@@ -24,7 +24,7 @@ public interface BrowserstackConfig extends Config {
     @DefaultValue("Samsung Galaxy A51")
     String deviceName();
 
-    @Key("os.version")
+    @Key("android.version")
     @DefaultValue("10.0")
     String osVersion();
 }

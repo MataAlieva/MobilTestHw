@@ -21,15 +21,12 @@ public class BrowserstackDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities caps = new MutableCapabilities();
 
-        caps.setCapability("device", config.deviceName());
-        caps.setCapability("os_version", config.osVersion());
+        caps.setCapability("deviceName", config.deviceName());
+        caps.setCapability("platformVersion", config.osVersion());
         caps.setCapability("app", config.appUrl());
 
         caps.setCapability("browserstack.user", config.browserstackUser());
         caps.setCapability("browserstack.key", config.browserstackKey());
-        caps.setCapability("project", "First Java Project");
-        caps.setCapability("build", "browserstack-build-1");
-        caps.setCapability("name", "first_test");
 
 
         try {
